@@ -12,23 +12,35 @@ import './App.css'
 import About from './About'
 import App from './App'
 import ErrorPage from './ErrorPage'
+import Contacts from './Contacts'
+import ButtonClicker from './ButtonClicker'
 
 const site = import.meta.env.BASE_URL
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <App />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: "/about",
+      element: <About />,
+    },
+    {
+      path: "/contacts",
+      element: <Contacts />,
+    },
+  ],
   {
-    path: '/',
-    element: <App />,
-    errorElement: <ErrorPage />
-  },
-  {
-    path: '/about',
-    element: <About />
-  },
-], {
-  basename: site
-})
+    basename: site,
+  }
+);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router} />
+  <>
+    <ButtonClicker />
+    <RouterProvider router={router} / >
+  </>
 )
